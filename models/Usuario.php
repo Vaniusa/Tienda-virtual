@@ -137,7 +137,8 @@ class Usuario
         $this->imagen = $imagen;
     }
 
-    public function save(){
+    public function save()
+    {
         $sql = "INSERT INTO usuarios VALUES(NULL,
                             '{$this->getNombre()}',
                             '{$this->getApellidos()}',
@@ -148,8 +149,8 @@ class Usuario
         $save = $this->db->query($sql);
 
         $result = false;
-        if ($save){
-            $result=true;
+        if ($save) {
+            $result = true;
         }
         return $result;
     }

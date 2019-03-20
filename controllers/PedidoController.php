@@ -8,7 +8,8 @@
 
 class PedidoController
 {
-    public function index(){
+    public function index()
+    {
         echo "Controlador Pedido, Accion index";
     }
 

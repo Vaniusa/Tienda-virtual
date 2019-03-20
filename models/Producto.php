@@ -9,7 +9,7 @@
 class Producto
 {
     private $id, $categoria_id, $nombre, $descripcion,
-    $precio, $stock, $oferta, $fecha, $imagen, $db;
+        $precio, $stock, $oferta, $fecha, $imagen, $db;
 
     public function __construct()
     {
@@ -61,7 +61,7 @@ class Producto
      */
     public function setNombre($nombre): void
     {
-        $this->nombre = $nombre;
+        $this->nombre = $this->db->real_escape_string($nombre);
     }
 
     /**
@@ -77,7 +77,7 @@ class Producto
      */
     public function setDescripcion($descripcion): void
     {
-        $this->descripcion = $descripcion;
+        $this->descripcion = $this->db->real_escape_string($descripcion);
     }
 
     /**
@@ -93,7 +93,7 @@ class Producto
      */
     public function setPrecio($precio): void
     {
-        $this->precio = $precio;
+        $this->precio = $this->db->real_escape_string($precio);
     }
 
     /**
@@ -109,7 +109,7 @@ class Producto
      */
     public function setStock($stock): void
     {
-        $this->stock = $stock;
+        $this->stock = $this->db->real_escape_string($stock);
     }
 
     /**
@@ -125,7 +125,7 @@ class Producto
      */
     public function setOferta($oferta): void
     {
-        $this->oferta = $oferta;
+        $this->oferta = $this->db->real_escape_string($oferta);
     }
 
     /**
@@ -160,12 +160,23 @@ class Producto
         $this->imagen = $imagen;
     }
 
-    public function getAll(){
+    public function getAll()
+    {
         $productos = $this->db->query("SELECT * FROM
         productos ORDER BY id DESC ");
         return $productos;
     }
 
-
-
+    public function save()
+    {
+        $sql = "INSERT INTO productos VALUES (NULL, {$this->getCategoriaId()}'{$this->getNombre()}', '{$this->getDescripcion()}', {$this->getPrecio()},
+                              {$this->getStock()}, NULL, curdate(),NULL);";
+        $save = $this->db->query($sql);
+        
+        $result = false;
+        if($save){
+            $result = true;
+        }
+        return $result;
+    }
 }
