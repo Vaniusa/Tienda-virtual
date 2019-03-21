@@ -52,6 +52,7 @@ class ProductoController
 
                 $save = $producto->save();
 
+
                 if ($save) {
                     $_SESSION['producto'] = "complete";
                 } else {

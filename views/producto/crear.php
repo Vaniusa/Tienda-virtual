@@ -6,12 +6,12 @@
         <input type="text" name="nombre"/>
 
         <label for="descripcion">Descripcion</label>
-        <textarea name="nombre"></textarea>
+        <textarea name="descripcion"></textarea>
 
         <label for="precio">Precio</label>
         <input type="text" name="precio"/>
 
-        <label for="Stock">Stock</label>
+        <label for="stock">Stock</label>
         <input type="number" name="stock"/>
 
         <label for="categoria">Categoria</label>
