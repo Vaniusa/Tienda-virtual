@@ -50,6 +50,23 @@ class ProductoController
                 $producto->setStock($stock);
                 $producto->setCategoriaId($categoria);
 
+                // Guarda la imagen
+                $file = $_FILES['imagen'];
+                $filename = $file['name'];
+                $mimetype = $file['type'];
+
+                if ($mimetype == "image/jpg" || $mimetype == 'image/jpeg' ||
+                    $mimetype == 'image/png' || $mimetype == 'imge/gif') {
+
+                    if (!is_dir('uploads/image')){
+                        mkdir('uploads/images',0777,true);
+                    }
+                    $producto->setImagen($filename);
+                    move_uploaded_file($file['tmp_name'],
+                        'uploads/images/'.$filename);
+
+                }
+
                 $save = $producto->save();
 
 
@@ -65,8 +82,8 @@ class ProductoController
         } else {
             $_SESSION['producto'] = "failed";
         }
-        
-        header('Location:'.base_url.'producto/gestion');
+
+        header('Location:' . base_url . 'producto/gestion');
     }
 
 }
