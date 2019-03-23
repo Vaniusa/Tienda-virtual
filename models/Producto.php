@@ -167,6 +167,14 @@ class Producto
         return $productos;
     }
 
+
+    public function getOne()
+    {
+        $producto = $this->db->query("SELECT * FROM
+        productos WHERE  id = {$this->getId()}");
+        return $producto->fetch_object();
+    }
+
     public function save()
     {
         $sql = "INSERT INTO productos VALUES (NULL, '{$this->getCategoriaId()}','{$this->getNombre()}', '{$this->getDescripcion()}', '{$this->getPrecio()}',
