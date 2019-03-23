@@ -51,23 +51,32 @@ class ProductoController
                 $producto->setCategoriaId($categoria);
 
                 // Guarda la imagen
-                $file = $_FILES['imagen'];
-                $filename = $file['name'];
-                $mimetype = $file['type'];
+                if (isset($_FILES['imagen'])) {
+                    $file = $_FILES['imagen'];
+                    $filename = $file['name'];
+                    $mimetype = $file['type'];
 
-                if ($mimetype == "image/jpg" || $mimetype == 'image/jpeg' ||
-                    $mimetype == 'image/png' || $mimetype == 'imge/gif') {
+                    if ($mimetype == "image/jpg" || $mimetype == 'image/jpeg' ||
+                        $mimetype == 'image/png' || $mimetype == 'imge/gif') {
 
-                    if (!is_dir('uploads/image')) {
-                        mkdir('uploads/images', 0777, true);
+                        if (!is_dir('uploads/images')) {
+                            if (!mkdir('uploads/images', 0777, true) && !is_dir('uploads/images')) {
+                                throw new \RuntimeException(sprintf('Directory "%s" was not created', 'uploads/images'));
+                            }
+                        }
+                        $producto->setImagen($filename);
+                        move_uploaded_file($file['tmp_name'],
+                            'uploads/images/' . $filename);
+
                     }
-                    $producto->setImagen($filename);
-                    move_uploaded_file($file['tmp_name'],
-                        'uploads/images/' . $filename);
-
                 }
-
-                $save = $producto->save();
+                if (isset($_GET['id'])){
+                    $id = $_GET['id'];
+                    $producto->setId($id);
+                    $save = $producto->edit();
+                }else {
+                    $save = $producto->save();
+                }
 
 
                 if ($save) {

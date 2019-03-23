@@ -180,21 +180,46 @@ class Producto
         $sql = "INSERT INTO productos VALUES (NULL, '{$this->getCategoriaId()}','{$this->getNombre()}', '{$this->getDescripcion()}', '{$this->getPrecio()}',
                               '{$this->getStock()}', NULL,CURDATE(),'{$this->getImagen()}');";
         $save = $this->db->query($sql);
-        
+
         $result = false;
-        if($save){
+        if ($save) {
             $result = true;
         }
         return $result;
     }
 
 
-    public function delete(){
+    public function edit()
+    {
+
+        $sql = "UPDATE productos SET nombre = '{$this->getNombre()}',categoria_id = '{$this->getCategoriaId()}',descripcion = '{$this->getDescripcion()}', precio='{$this->getPrecio()}', stock='{$this->getStock()}'";
+
+
+                                      //Comprobamos si se cambia una imagen nueva
+        if ($this->getImagen() != null) {
+            $sql .= " ,imagen='{$this->getImagen()}'";
+        }
+        $sql .= " WHERE id={$this->id} ;";
+
+
+
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+        return $result;
+    }
+
+
+    public function delete()
+    {
         $sql = "DELETE FROM productos WHERE id=($this->id)";
         $delete = $this->db->query($sql);
 
         $result = false;
-        if($delete){
+        if ($delete) {
             $result = true;
         }
         return $result;
