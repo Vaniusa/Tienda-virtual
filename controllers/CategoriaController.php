@@ -6,6 +6,7 @@
  * Time: 15:11
  */
 require_once 'models/Categoria.php';
+require_once 'models/Producto.php';
 
 class CategoriaController
 {
@@ -15,6 +16,24 @@ class CategoriaController
         $categoria = new Categoria();
         $categorias = $categoria->getAll();
         require_once 'views/categoria/index.php';
+    }
+
+
+    public function ver(){
+        if (isset($_GET['id'])){
+            $id = $_GET['id'];
+                                                   // Conseguimos la categoria
+            $categoria = new Categoria();
+            $categoria->setId($id);
+            $categoria = $categoria->getOne();
+
+                                                  //Conseguimos los productos
+            $producto = new Producto();
+            $producto->setId($id);
+            $productos = $producto->getAllCategory();
+
+        }
+        require_once 'views/categoria/ver.php';
     }
 
 
