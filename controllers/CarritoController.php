@@ -43,7 +43,7 @@ class CarritoController
 
                                             // Añadir al carrito
             if (is_object($producto)) {
-                $_SESSION['carrito'][] = array(
+                $_SESSION['carrito'] = array(
                     "id_producto" => $producto->id,
                     "precio" => $producto->precio,
                     "unidades" => 1,
