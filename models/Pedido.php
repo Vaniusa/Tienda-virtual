@@ -169,6 +169,7 @@ class Pedido
     public function getOne()
     {
         $producto = $this->db->query("SELECT * FROM pedidos WHERE id = {$this->getId()}");
+    return $producto->fetch_object();
     }
 
 
@@ -183,6 +184,27 @@ class Pedido
             $result = true;
         }
         return $result;
+    }
+
+
+    public function save_linea()
+    {
+        $sql = "SELECT LAST_INSERT_ID() as 'pedido';";
+        $query = $this->db->query($sql);
+        $pedido_id = $query->fetch_object()->pedido;
+
+        foreach ($_SESSION['carrito'] as $elmento) {
+            $producto = $elmento['producto'];
+
+            $insert = "INSERT INTO lineas_pedidos VALUES(NULL, {$pedido_id},{$producto->id},{$elmento['unidades']})";
+            $save = $this->db->query($insert);
+        }
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+        return $result;
+
     }
 
 }
