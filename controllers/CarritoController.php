@@ -5,7 +5,7 @@
  * Date: 25/03/2019
  * Time: 7:11
  */
-require_once 'models/producto.php';
+require_once 'models/Producto.php';
 
 class CarritoController
 {

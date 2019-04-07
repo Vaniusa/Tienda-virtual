@@ -5,7 +5,7 @@
  * Date: 17/03/2019
  * Time: 15:11
  */
-require_once 'models/pedido.php';
+require_once 'models/Pedido.php';
 
 class PedidoController
 {

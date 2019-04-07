@@ -5,7 +5,7 @@
  * Date: 17/03/2019
  * Time: 14:27
  */
-require_once 'models/usuario.php';
+require_once 'models/Usuario.php';
 
 class UsuarioController
 {

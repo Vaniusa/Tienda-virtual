@@ -23,25 +23,25 @@ class Utils
 
     public static function showCategorias()
     {
-        require_once 'models/categoria.php';
+        require_once 'models/Categoria.php';
         $categoria = new Categoria();
         $categorias = $categoria->getAll();
         return $categorias;
     }
 
     public static function statsCarrito(){
-        $stasts = array(
+        $stats = array(
             'count' =>0,
             'total' =>0
         );
 
         if (isset($_SESSION['carrito'])){
-            $stasts['count'] = count($_SESSION['carrito']);
+            $stats['count'] = count($_SESSION['carrito']);
 
             foreach ($_SESSION['carrito'] as $producto) {
-                $stasts['total'] += $producto['precio']* $producto['unidades'];
+                $stats['total'] += $producto['precio']* $producto['unidades'];
             }
         }
-        return $stasts;
+        return $stats;
     }
 }
