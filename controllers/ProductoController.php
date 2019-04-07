@@ -5,7 +5,7 @@
  * Date: 17/03/2019
  * Time: 15:12
  */
-require_once 'models/producto.php';
+require_once 'models/Producto.php';
 
 class ProductoController
 {

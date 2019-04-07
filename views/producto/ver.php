@@ -10,7 +10,7 @@
     <h2><?= $product->nombre ?></h2>
     <p><?= $product->descripcion ?></p>
     <p><?= $product->precio ?></p>
-    <a href="#" class="button">Comprar</a>
+    <a href="<?=base_url?>carrito/add&id=<?=$product->id?>" class="button">Comprar</a>
 
 <?php else: ?>
     <h1>El producto NO existe</h1>
