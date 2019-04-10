@@ -5,7 +5,7 @@
  * Date: 17/03/2019
  * Time: 15:11
  */
-require_once 'models/Categoria.php';
+require_once 'models/categoria.php';
 
 class CategoriaController
 {
