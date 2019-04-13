@@ -17,6 +17,20 @@ class ProductoController
     }
 
 
+    public function ver()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            $producto = new Producto();
+            $producto->setId($id);
+
+            $product = $producto->getOne();
+        }
+        require_once 'views/producto/ver.php';
+    }
+
+
     public function gestion()
     {
 
@@ -72,11 +86,11 @@ class ProductoController
 
                     }
                 }
-                if (isset($_GET['id'])){
+                if (isset($_GET['id'])) {
                     $id = $_GET['id'];
                     $producto->setId($id);
                     $save = $producto->edit();
-                }else {
+                } else {
                     $save = $producto->save();
                 }
 
