@@ -19,19 +19,20 @@ class CategoriaController
     }
 
 
-    public function ver(){
-        if (isset($_GET['id'])){
+    public function ver()
+    {
+        if (isset($_GET['id'])) {
             $id = $_GET['id'];
-                                                   // Conseguimos la categoria
+
+            // Conseguir categoria
             $categoria = new Categoria();
             $categoria->setId($id);
             $categoria = $categoria->getOne();
 
-                                                  //Conseguimos los productos
+            // Conseguir productos
             $producto = new Producto();
-            $producto->setId($id);
+            $producto->setCategoriaId($id);
             $productos = $producto->getAllCategory();
-
         }
         require_once 'views/categoria/ver.php';
     }

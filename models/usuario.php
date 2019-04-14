@@ -33,7 +33,7 @@ class Usuario
     /**
      * @param mixed $id
      */
-    public function setId($id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -49,7 +49,7 @@ class Usuario
     /**
      * @param mixed $nombre
      */
-    public function setNombre($nombre): void
+    public function setNombre($nombre)
     {
         $this->nombre =  $this->db->real_escape_string($nombre);
     }
@@ -65,7 +65,7 @@ class Usuario
     /**
      * @param mixed $apellidos
      */
-    public function setApellidos($apellidos): void
+    public function setApellidos($apellidos)
     {
         $this->apellidos =  $this->db->real_escape_string($apellidos);
     }
@@ -81,7 +81,7 @@ class Usuario
     /**
      * @param mixed $email
      */
-    public function setEmail($email): void
+    public function setEmail($email)
     {
         $this->email =  $this->db->real_escape_string($email);
     }
@@ -98,7 +98,7 @@ class Usuario
     /**
      * @param mixed $password
      */
-    public function setPassword($password): void
+    public function setPassword($password)
     {
         $this->password = $password;
     }
@@ -116,7 +116,7 @@ class Usuario
     /**
      * @param mixed $rol
      */
-    public function setRol($rol): void
+    public function setRol($rol)
     {
         $this->rol = $rol;
     }
@@ -132,7 +132,7 @@ class Usuario
     /**
      * @param mixed $imagen
      */
-    public function setImagen($imagen): void
+    public function setImagen($imagen)
     {
         $this->imagen = $imagen;
     }

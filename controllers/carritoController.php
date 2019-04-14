@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: AlesikaPc
- * Date: 25/03/2019
- * Time: 7:11
- */
+
 require_once 'models/producto.php';
 
 class CarritoController
 {
-
     public function index()
     {
         $carrito = $_SESSION['carrito'];
@@ -33,17 +27,18 @@ class CarritoController
                     $counter++;
                 }
             }
-
         }
+
         if (!isset($counter) || $counter == 0) {
-            //Conseguir el producto
+            // Conseguir producto
             $producto = new Producto();
             $producto->setId($producto_id);
             $producto = $producto->getOne();
 
-                                            // Añadir al carrito
+
+            //Añadir al carrito
             if (is_object($producto)) {
-                $_SESSION['carrito'] = array(
+                $_SESSION['carrito'] [] = array(
                     "id_producto" => $producto->id,
                     "precio" => $producto->precio,
                     "unidades" => 1,
@@ -51,9 +46,9 @@ class CarritoController
                 );
             }
         }
+        header('Location:' . base_url . 'carrito/index');
 
 
-        header("Location:" . base_url . "carrito/index");
     }
 
 
@@ -68,5 +63,6 @@ class CarritoController
         unset($_SESSION['carrito']);
         header("Location:" . base_url . "carrito/index");
     }
+
 
 }

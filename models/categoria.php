@@ -28,7 +28,7 @@ class Categoria
     /**
      * @param mixed $id
      */
-    public function setId($id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -44,7 +44,7 @@ class Categoria
     /**
      * @param mixed $nombre
      */
-    public function setNombre($nombre): void
+    public function setNombre($nombre)
     {
         $this->nombre = $this->db->real_escape_string($nombre);
     }
@@ -60,7 +60,6 @@ class Categoria
     public function getOne()
     {
         $categoria = $this->db->query("SELECT * FROM categorias WHERE id={$this->getId()}");
-
 
         return $categoria->fetch_object();
     }

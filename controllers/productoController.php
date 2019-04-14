@@ -21,12 +21,13 @@ class ProductoController
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
+
             $producto = new Producto();
             $producto->setId($id);
+
             $product = $producto->getOne();
         }
         require_once 'views/producto/ver.php';
-
     }
 
 

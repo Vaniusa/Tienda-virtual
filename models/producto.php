@@ -27,7 +27,7 @@ class Producto
     /**
      * @param mixed $id
      */
-    public function setId($id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -43,7 +43,7 @@ class Producto
     /**
      * @param mixed $categoria_id
      */
-    public function setCategoriaId($categoria_id): void
+    public function setCategoriaId($categoria_id)
     {
         $this->categoria_id = $categoria_id;
     }
@@ -59,7 +59,7 @@ class Producto
     /**
      * @param mixed $nombre
      */
-    public function setNombre($nombre): void
+    public function setNombre($nombre)
     {
         $this->nombre = $this->db->real_escape_string($nombre);
     }
@@ -75,7 +75,7 @@ class Producto
     /**
      * @param mixed $descripcion
      */
-    public function setDescripcion($descripcion): void
+    public function setDescripcion($descripcion)
     {
         $this->descripcion = $this->db->real_escape_string($descripcion);
     }
@@ -91,7 +91,7 @@ class Producto
     /**
      * @param mixed $precio
      */
-    public function setPrecio($precio): void
+    public function setPrecio($precio)
     {
         $this->precio = $this->db->real_escape_string($precio);
     }
@@ -107,7 +107,7 @@ class Producto
     /**
      * @param mixed $stock
      */
-    public function setStock($stock): void
+    public function setStock($stock)
     {
         $this->stock = $this->db->real_escape_string($stock);
     }
@@ -123,7 +123,7 @@ class Producto
     /**
      * @param mixed $oferta
      */
-    public function setOferta($oferta): void
+    public function setOferta($oferta)
     {
         $this->oferta = $this->db->real_escape_string($oferta);
     }
@@ -139,7 +139,7 @@ class Producto
     /**
      * @param mixed $fecha
      */
-    public function setFecha($fecha): void
+    public function setFecha($fecha)
     {
         $this->fecha = $fecha;
     }
@@ -155,7 +155,7 @@ class Producto
     /**
      * @param mixed $imagen
      */
-    public function setImagen($imagen): void
+    public function setImagen($imagen)
     {
         $this->imagen = $imagen;
     }
@@ -170,11 +170,15 @@ class Producto
 
     public function getAllCategory()
     {
-        $sql = "SELECT p.*, c.nombre AS 'catnombre' FROM productos p 
-                  INNER JOIN categorias c ON c.id = p.categoria_id
-                  WHERE p.categoria_id = {$this->getId()}
-                  ORDER BY id DESC ";
+        $sql = "SELECT p.*, c.nombre AS 'catnombre' FROM productos p INNER JOIN categorias c ON c.id = p.categoria_id  WHERE p.categoria_id = {$this->getCategoriaId()}  ORDER BY id DESC";
         $productos = $this->db->query($sql);
+        return $productos;
+    }
+
+
+    public function getRandom($limit)
+    {
+        $productos = $this->db->query("SELECT * FROM productos ORDER BY RAND() LIMIT $limit");
         return $productos;
     }
 

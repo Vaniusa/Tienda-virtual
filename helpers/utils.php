@@ -29,19 +29,21 @@ class Utils
         return $categorias;
     }
 
-    public static function statsCarrito(){
-        $stasts = array(
-            'count' =>0,
-            'total' =>0
+
+    public static function statsCarrito()
+    {
+        $stats = array(
+            'count' => 0,
+            'total' => 0
         );
 
-        if (isset($_SESSION['carrito'])){
-            $stasts['count'] = count($_SESSION['carrito']);
+        if(isset($_SESSION['carrito'])){
+            $stats['count'] = count($_SESSION['carrito']);
 
-            foreach ($_SESSION['carrito'] as $producto) {
-                $stasts['total'] += $producto['precio']* $producto['unidades'];
+            foreach ($_SESSION['carrito'] as $producto){
+                $stats['total'] += $producto['precio']* $producto['unidades'];
             }
         }
-        return $stasts;
+        return $stats;
     }
 }
