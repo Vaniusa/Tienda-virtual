@@ -5,7 +5,7 @@
  * Date: 17/03/2019
  * Time: 15:12
  */
-require_once 'models/Producto.php';
+require_once 'models/producto.php';
 
 class ProductoController
 {
@@ -21,12 +21,13 @@ class ProductoController
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
+
             $producto = new Producto();
             $producto->setId($id);
+
             $product = $producto->getOne();
         }
         require_once 'views/producto/ver.php';
-
     }
 
 

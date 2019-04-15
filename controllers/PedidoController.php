@@ -1,11 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ionsa
- * Date: 17/03/2019
- * Time: 15:11
- */
-require_once 'models/Pedido.php';
+
+
+require_once 'models/pedido.php';
 
 class PedidoController
 {
@@ -27,7 +23,7 @@ class PedidoController
             $coste = $stats['total'];
 
             if ($provincia && $localidad && $direccion) {
-                //Guardar los datos el la BBDD
+                // Guardar el pedido en la BBDD
                 $pedido = new Pedido();
                 $pedido->setUsuarioId($usuario_id);
                 $pedido->setProvincia($provincia);
@@ -43,25 +39,50 @@ class PedidoController
                 if ($save && $save_linea) {
                     $_SESSION['pedido'] = "complete";
                 } else {
-                    $_SESSION['pedido'] = 'failed';
+                    $_SESSION['pedido'] = "failed";
                 }
-
             } else {
-                $_SESSION['pedido'] = 'failed';
+                $_SESSION['pedido'] = "failed";
             }
 
-            header("Location:".base_url.'pedido/confirmado');
+            header("Location:" . base_url . 'pedido/confirmado');
+
 
         } else {
-            //Redirigir al index
+            // Redirigir al index
             header("Location:" . base_url);
         }
     }
 
+
     public function confirmado()
     {
+        if (isset($_SESSION['identity'])) {
+            $identity = $_SESSION['identity'];
+            $pedido = new Pedido();
+            $pedido->setUsuarioId($identity->id);
 
+            $pedido = $pedido->getOneByUser();
+
+            $pedido_produdctos = new Pedido();
+            $productos = $pedido_produdctos->getProductosByPedido($pedido->id);
+        }
         require_once 'views/pedido/confirmado.php';
+    }
+
+
+    public function mis_pedidos()
+    {
+        Utils::isIdentity();
+        $usuario_id = $_SESSION['identity']->id;
+        $pedido = new Pedido();
+
+
+        // Sacar los pedidos del usuario
+        $pedido->setUsuarioId($usuario_id);
+        $pedidos = $pedido->getAllByUser();
+
+        require_once 'views/pedido/mis_pedidos.php';
     }
 
 }

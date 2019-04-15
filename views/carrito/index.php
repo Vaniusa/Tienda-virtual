@@ -7,14 +7,13 @@
         <th>Precio</th>
         <th>Unidades</th>
     </tr>
-    <?php
-    foreach ($carrito as $indice => $elemento):
+    <?php foreach ($carrito as $indice => $elemento):
         $producto = $elemento['producto'];
         ?>
+
         <tr>
-            <td>
-                <?php if ($producto->imagen != null): ?>
-                    <img src="<?= base_url ?>uploads/images/<?= $producto->imagen ?>" class="img_carrito">
+            <td> <?php if ($producto->imagen != null): ?>
+                    <img src="<?= base_url ?>uploads/images/<?= $producto->imagen ?>" class="img_carrito"/>
                 <?php else: ?>
                     <img src="<?= base_url ?>assets/img/camiseta.png" class="img_carrito"/>
                 <?php endif; ?>
@@ -29,6 +28,7 @@
                 <?= $elemento['unidades'] ?>
             </td>
         </tr>
+
     <?php endforeach; ?>
 </table>
 
