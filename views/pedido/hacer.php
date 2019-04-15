@@ -5,7 +5,7 @@
 </p>
 
 </br>
-<h3Direccion para el envio:</h3>
+<h3>Direccion para el envio:</h3>
 <form action="<?=base_url.'pedido/add'?>" method="post">
     <label for="provincia">Provincia</label>
     <input type="text" name="provincia"  required/>
