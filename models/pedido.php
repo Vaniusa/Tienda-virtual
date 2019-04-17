@@ -181,7 +181,6 @@ class Pedido
     }
 
 
-
     public function getAllByUser()
     {
         $sql = "SELECT p.* FROM pedidos p WHERE p.usuario_id = {$this->getUsuarioId()} ORDER BY id desc";
@@ -231,5 +230,20 @@ class Pedido
         return $result;
 
     }
+
+
+    public function actualizarEstadoPedido()
+    {
+
+        $sql = "UPDATE pedidos SET estado = '{$this->getEstado()}' WHERE id={$this->getId()}";
+        $save = $this->db->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+        return $result;
+    }
+
 
 }

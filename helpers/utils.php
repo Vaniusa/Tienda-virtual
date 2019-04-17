@@ -1,6 +1,6 @@
 <?php
 
-class Utils
+class  Utils
 {
     public static function deleteSession($name)
     {
@@ -56,5 +56,24 @@ class Utils
             }
         }
         return $stats;
+    }
+
+
+
+    public static function showStatus($status)
+    {
+        $value = 'Pendiete';
+
+        if ($status == 'confirm'){
+            $value = 'Pendiente';
+        }elseif ($status == 'preparation'){
+            $value = 'En preparation';
+        }elseif ($status == 'ready'){
+            $value = 'Preparado para enviar';
+        }elseif ($status == 'sended'){
+            $value = 'Enviado';
+        }
+
+        return $value;
     }
 }
