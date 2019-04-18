@@ -168,7 +168,7 @@ class Pedido
 
     public function getOne()
     {
-        $producto = $this->db->query("SELECT * FROM pedidos WHERE id = {$this->getId()}");
+        $producto = $this->db->query("SELECT p.*, u.* FROM pedidos p INNER JOIN usuarios u ON p.usuario_id= u.id WHERE p.id= {$this->getId()}");
         return $producto->fetch_object();
     }
 
@@ -222,9 +222,11 @@ class Pedido
 
             $insert = "INSERT INTO lineas_pedidos VALUES(NULL, {$pedido_id},{$producto->id},{$elmento['unidades']})";
             $save = $this->db->query($insert);
+            $actulizar_stock = "UPDATE productos SET stock=(stock-{$elmento['unidades']}) WHERE id={$elmento['id_producto']}";
+            $actualizar =$this->db->query($actulizar_stock);
         }
         $result = false;
-        if ($save) {
+        if ($save && $actualizar) {
             $result = true;
         }
         return $result;

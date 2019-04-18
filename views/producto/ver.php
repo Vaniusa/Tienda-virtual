@@ -10,8 +10,14 @@
         </div>
         <div class="data">
             <p class="description"><?= $product->descripcion ?></p>
-            <p class="price"><?= $product->precio ?> €</p>
-            <a href="<?=base_url?>carrito/add&id=<?=$product->id?>" class="button">Comprar</a>
+
+            <?php if ($product->stock <= 0):?>
+                <p>Agotado.</p>
+            <?php else: ?>
+                <p><?= $product->stock ?> unidades</p>
+                <p><?= $product->precio ?> €</p>
+                <a href="<?= base_url ?>carrito/add&id=<?= $product->id ?>" class="button">Comprar</a>
+            <?php endif; ?>
         </div>
     </div>
 

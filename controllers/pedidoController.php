@@ -45,6 +45,8 @@ class PedidoController
                 $_SESSION['pedido'] = "failed";
             }
 
+            unset($_SESSION['carrito']);
+
             header("Location:" . base_url . 'pedido/confirmado');
 
 
@@ -121,11 +123,10 @@ class PedidoController
     }
 
 
-
     public function estado()
     {
         Utils::isAdmin();
-        if (isset($_POST['pedido_id'])&& isset($_POST['estado'])){
+        if (isset($_POST['pedido_id']) && isset($_POST['estado'])) {
             // Recojer datos del formulario
             $id = $_POST['pedido_id'];
             $estado = $_POST['estado'];
@@ -136,10 +137,10 @@ class PedidoController
             $pedido->setEstado($estado);
             $pedido->actualizarEstadoPedido();
 
-            header("Location:".base_url.'pedido/detalle&id='.$id);
+            header("Location:" . base_url . 'pedido/detalle&id=' . $id);
 
-        }else{
-            header("Location:".base_url);
+        } else {
+            header("Location:" . base_url);
         }
     }
 }
